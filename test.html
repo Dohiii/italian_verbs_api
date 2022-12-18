@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .alert {
+        width: 200px;
+        height: 100px;
+        line-height: 100px;
+        background-color: red;
+        color: white;
+        text-align: center;
+      }
+
+      .hide {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Show alert and hide it 3 seconds later</h1>
+    <p>
+      Once this page has loaded, an alert box will display below then disappear
+      3 seconds later.
+    </p>
+    <script>
+      const alertHTML = '<div class="alert">ALERT!!!</div>';
+      document.body.insertAdjacentHTML("beforeend", alertHTML);
+      setTimeout(
+        () => document.querySelector(".alert").classList.add("hide"),
+        3000
+      );
+    </script>
+  </body>
+</html>
