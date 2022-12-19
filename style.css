@@ -261,6 +261,31 @@ textarea::placeholder {
   color: hsl(210, 10%, 24%);
 }
 
+.form {
+  display: block;
+}
+
+.loader {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #111213; /* Blue */
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+  display: none;
+  text-align: center;
+  margin-top: 200px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (min-width: 600px) {
   form {
     background-color: #fff;
@@ -270,5 +295,11 @@ textarea::placeholder {
     padding-left: 3rem;
     padding-right: 1rem;
     border-radius: 15px;
+  }
+  .loader {
+    margin-top: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

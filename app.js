@@ -8,20 +8,20 @@ const word = document.getElementById("name")
 
 
 const checkboxes = document.querySelectorAll("input[name=checkbox_char]");
-
-
-
 const submit = document.getElementById("submit")
 const new_verb = document.getElementById("new_verb")
 
 // Utils
 let checkboxValueChecked = []
+let ping = false
+
+
 
 // console.log(checkboxValueChecked)
 
 async function renderFunction() {
-    let charactersSelected = getValueCheckbox();
-    let categorySelected = category.value
+    let charactersSelected = await getValueCheckbox();
+    let categorySelected = await category.value
 
     const charString = charactersSelected.join("&")
 
@@ -36,7 +36,7 @@ async function renderFunction() {
         categorySelected = ["regularny", "nieregularny"][Math.floor(Math.random() * 2)];
     }
 
-    const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}`
+    const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}`
 
     // console.log(url)
 
@@ -54,6 +54,8 @@ async function renderFunction() {
     tlumaczenie.textContent = `(${verb.tlumaczenie})`
     tense.textContent = verb.tense
     osoba.textContent = verb.pluc
+
+
 
     // console.log(verb.correctWord)
 
@@ -96,11 +98,12 @@ async function renderFunction() {
     })
 
     word.style.borderColor = "black"
+    showForm()
 }
 
 
-
-function getValueCheckbox() {
+// next function
+const getValueCheckbox = async () => {
     let result = [];
     for (let i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
@@ -153,4 +156,53 @@ new_verb.addEventListener("click", e => {
 })
 
 
-renderFunction()
+
+const showLoader = () => {
+    const loader = document.querySelector(".loader")
+    const form = document.querySelector(".form")
+    loader.style.display = "block"
+    form.style.display = "none"
+}
+
+const showForm = () => {
+    const loader = document.querySelector(".loader")
+    const form = document.querySelector(".form")
+    loader.style.display = "none"
+    form.style.display = "block"
+}
+
+
+function delay(n) {
+    return new Promise(function (resolve) {
+        setTimeout(resolve, n * 1000);
+    });
+}
+
+
+
+
+const pingServer = async () => {
+    renderFunction()
+    const loader = document.querySelector(".loader")
+    const form = document.querySelector(".form")
+    loader.style.display = "block"
+    form.style.display = "none"
+    await delay(10)
+    loader.style.display = "none"
+    form.style.display = "block"
+    renderFunction()
+    await delay(10)
+    renderFunction()
+    await delay(10)
+    renderFunction()
+}
+
+
+try {
+    pingServer()
+
+} catch (error) {
+    console.log(error)
+} finally {
+    renderFunction()
+}
