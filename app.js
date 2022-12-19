@@ -16,6 +16,10 @@ let checkboxValueChecked = []
 let ping = false
 
 
+// deployed url
+// https://italian-verbs.onrender.com
+// http://127.0.0.1:3000
+
 
 // console.log(checkboxValueChecked)
 
@@ -36,7 +40,7 @@ async function renderFunction() {
         categorySelected = ["regularny", "nieregularny"][Math.floor(Math.random() * 2)];
     }
 
-    const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}`
+    const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}`
 
     // console.log(url)
 
