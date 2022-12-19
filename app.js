@@ -8,6 +8,8 @@ const word = document.getElementById("name")
 
 
 const checkboxes = document.querySelectorAll("input[name=checkbox_char]");
+const btnLetter = document.querySelectorAll(".btn-italian-letter");
+
 const submit = document.getElementById("submit")
 const new_verb = document.getElementById("new_verb")
 
@@ -139,6 +141,15 @@ checkboxes.forEach(function (checkbox) {
         renderFunction()
     })
 });
+
+
+btnLetter.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.preventDefault()
+        word.value += btn.textContent
+    })
+})
+
 
 
 

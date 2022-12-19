@@ -286,6 +286,26 @@ textarea::placeholder {
   }
 }
 
+.italian-letters {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.italian-letters button {
+  border: 1px black solid;
+  border-radius: 4px;
+  margin: 3px;
+  width: 22px;
+  padding: 8px4px;
+  cursor: pointer;
+}
+
+.italian-letters button:hover {
+  background-color: rgb(155, 152, 152);
+}
+
 @media (min-width: 600px) {
   form {
     background-color: #fff;
