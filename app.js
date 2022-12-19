@@ -199,6 +199,14 @@ const pingServer = async () => {
     renderFunction()
     await delay(10)
     renderFunction()
+    await delay(10)
+    renderFunction()
+    await delay(10)
+    renderFunction()
+    await delay(10)
+    renderFunction()
+    await delay(10)
+    renderFunction()
 }
 
 
