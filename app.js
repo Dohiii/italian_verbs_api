@@ -29,20 +29,20 @@ async function renderFunction() {
     let charactersSelected = await getValueCheckbox();
     let categorySelected = await category.value
 
-    const charString = charactersSelected.join("&")
+    let charString = charactersSelected.join("")
 
-    // console.log(categorySelected)
 
-    charactersSelected.join("")
-    if (charactersSelected.length === 0) {
-        charactersSelected = `&tense=Presente Indicativo`
+    // charactersSelected.join("")
+    if (charString.length === 0) {
+        charString = `&tense=Presente Indicativo`
     }
 
     if (categorySelected === "all") {
         categorySelected = ["regularny", "nieregularny"][Math.floor(Math.random() * 2)];
     }
 
-    const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}`
+    const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}`
+    // const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}`
 
     // console.log(url)
 
@@ -61,46 +61,56 @@ async function renderFunction() {
     tense.textContent = verb.tense
     osoba.textContent = verb.pluc
 
+    let correctVerbArr = []
+
+    if (verb.correctWord.includes(";") || verb.correctWord.includes(",")) {
+        // verb.correctWord
 
 
-    // console.log(verb.correctWord)
 
-    if (verb.correctWord.includes(";")) {
-        verb.correctWord = verb.correctWord.split(";")
+        const tempArr = verb.correctWord.split(/[;,]/)
+
+        tempArr.forEach(word => {
+            const newWord = word.trim()
+            correctVerbArr.push(newWord)
+        })
+
+
+
+        verb.correctWord = correctVerbArr
+
+
     }
 
-    // console.log(verb.correctWord)
-
+    console.log(verb.correctWord)
 
 
 
     submit.addEventListener("click", (e) => {
-
         e.preventDefault()
-
         const inputetWord = word.value.toLowerCase()
-
-
-
         if (typeof verb.correctWord === "string") {
             if (inputetWord === verb.correctWord) {
                 renderFunction()
+                alert("Correct")
                 word.value = ""
             }
         }
-
 
         if (typeof verb.correctWord === "object") {
-            if (verb.correctWord.includes(inputetWord)) {
+            if (
+                verb.correctWord.includes(inputetWord)
+            ) {
                 renderFunction()
+                alert("Correct")
                 word.value = ""
+
             }
         }
-
-
         if (inputetWord !== correctWord) {
             word.style.borderColor = "red"
         }
+
     })
 
     word.style.borderColor = "black"
@@ -167,6 +177,7 @@ async function getData(url) {
 
 new_verb.addEventListener("click", e => {
     e.preventDefault()
+    word.value = ""
     renderFunction()
 })
 
@@ -202,23 +213,13 @@ const pingServer = async () => {
     const form = document.querySelector(".form")
     loader.style.display = "block"
     form.style.display = "none"
-    await delay(10)
+    await delay(15)
     loader.style.display = "none"
     form.style.display = "block"
-    renderFunction()
-    await delay(10)
-    renderFunction()
-    await delay(10)
-    renderFunction()
-    await delay(10)
-    renderFunction()
-    await delay(10)
-    renderFunction()
-    await delay(10)
-    renderFunction()
-    await delay(10)
-    renderFunction()
 }
+
+
+
 
 
 try {
