@@ -168,10 +168,13 @@ async function getData(url) {
     const response = await fetch(url)
     // Extract data from response
     const data = await response.json();
+
+    console.log("run get data")
     // Handle errors
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
+
     return data
 }
 
@@ -208,14 +211,14 @@ function delay(n) {
 
 
 const pingServer = async () => {
-    getData("https://italian-verbs.onrender.com/api/v1//verbs/ping")
+    getData("https:/italian-verbs.onrender.com/api/v1/admin")
     const loader = document.querySelector(".loader")
     const form = document.querySelector(".form")
     loader.style.display = "block"
     form.style.display = "none"
     await delay(10)
 
-    getData("https://italian-verbs.onrender.com/api/v1//verbs/ping")
+    await getData("https:/italian-verbs.onrender.com/api/v1/admin")
 
     await delay(10)
 
