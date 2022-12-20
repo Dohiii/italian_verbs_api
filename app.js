@@ -41,8 +41,8 @@ async function renderFunction() {
         categorySelected = ["regularny", "nieregularny"][Math.floor(Math.random() * 2)];
     }
 
-    const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}`
-    // const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}`
+    // const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}`
+    const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}`
 
     // console.log(url)
 
@@ -208,12 +208,17 @@ function delay(n) {
 
 
 const pingServer = async () => {
-    renderFunction()
+    getData("https://italian-verbs.onrender.com/api/v1//verbs/ping")
     const loader = document.querySelector(".loader")
     const form = document.querySelector(".form")
     loader.style.display = "block"
     form.style.display = "none"
-    await delay(15)
+    await delay(10)
+
+    getData("https://italian-verbs.onrender.com/api/v1//verbs/ping")
+
+    await delay(10)
+
     loader.style.display = "none"
     form.style.display = "block"
 }
