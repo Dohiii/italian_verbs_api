@@ -33,7 +33,30 @@ body {
 #correctWord label {
   margin: 1rem;
 }
-#correctWord input {
+
+.input-icons i {
+  position: absolute;
+}
+
+.input-icons {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px;
+  margin-top: 9px;
+  margin-left: 300px;
+  color: green;
+  min-width: 50px;
+  text-align: center;
+  display: none;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
 }
 
 #cas_i_tlumaczenie {

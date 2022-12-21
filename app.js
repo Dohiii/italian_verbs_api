@@ -6,6 +6,8 @@ const tense = document.getElementById("tense")
 const osoba = document.getElementById("osoba")
 const word = document.getElementById("name")
 
+const icon = document.querySelector(".icon")
+
 
 const checkboxes = document.querySelectorAll("input[name=checkbox_char]");
 const btnLetter = document.querySelectorAll(".btn-italian-letter");
@@ -15,8 +17,6 @@ const new_verb = document.getElementById("new_verb")
 
 // Utils
 let checkboxValueChecked = []
-let ping = false
-
 
 // deployed url
 // https://italian-verbs.onrender.com
@@ -88,11 +88,32 @@ async function renderFunction() {
 
     submit.addEventListener("click", (e) => {
         e.preventDefault()
+        submitVerb()
+
+    })
+
+    word.addEventListener("keypress", function (event) {
+        // If the user presses the "Enter" key on the keyboard
+        if (event.key === "Enter") {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            submitVerb()
+        }
+    });
+
+    word.style.borderColor = "black"
+    showForm()
+
+
+
+    // submit verb:
+    const submitVerb = async () => {
         const inputetWord = word.value.toLowerCase()
         if (typeof verb.correctWord === "string") {
             if (inputetWord === verb.correctWord) {
                 renderFunction()
-                alert("Correct")
+                celebrateCorrect()
                 word.value = ""
             }
         }
@@ -104,18 +125,23 @@ async function renderFunction() {
                 renderFunction()
                 alert("Correct")
                 word.value = ""
-
             }
         }
         if (inputetWord !== correctWord) {
             word.style.borderColor = "red"
         }
-
-    })
-
-    word.style.borderColor = "black"
-    showForm()
+    }
 }
+
+
+const celebrateCorrect = async () => {
+    icon.style.display = "block"
+    await delay(1.5)
+    icon.style.display = "none"
+
+}
+
+
 
 
 // next function
@@ -162,14 +188,10 @@ btnLetter.forEach(btn => {
 
 
 
-
-
 async function getData(url) {
     const response = await fetch(url)
     // Extract data from response
     const data = await response.json();
-
-    console.log("run get data")
     // Handle errors
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
