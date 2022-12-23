@@ -18,6 +18,7 @@ const helpBtn = document.getElementById("pdopowiedż")
 
 // Utils
 let checkboxValueChecked = []
+let count = []
 
 // deployed url
 // https://italian-verbs.onrender.com
@@ -29,9 +30,7 @@ let checkboxValueChecked = []
 async function renderFunction() {
     let charactersSelected = await getValueCheckbox();
     let categorySelected = await category.value
-
     let charString = charactersSelected.join("")
-
 
     // charactersSelected.join("")
     if (charString.length === 0) {
@@ -66,17 +65,12 @@ async function renderFunction() {
 
     if (verb.correctWord.includes(";") || verb.correctWord.includes(",")) {
         // verb.correctWord
-
-
-
         const tempArr = verb.correctWord.split(/[;,]/)
 
         tempArr.forEach(word => {
             const newWord = word.trim()
             correctVerbArr.push(newWord)
         })
-
-
 
         verb.correctWord = correctVerbArr
 
@@ -89,6 +83,7 @@ async function renderFunction() {
 
     submit.addEventListener("click", (e) => {
         e.preventDefault()
+
         submitVerb()
 
     })
@@ -96,7 +91,8 @@ async function renderFunction() {
     helpBtn.addEventListener("click", (e) => {
         e.preventDefault()
         word.value = verb.correctWord
-
+        // helpBtn.style.display = "none"
+        count.length = 0
     })
 
     word.addEventListener("keypress", function (event) {
@@ -111,6 +107,7 @@ async function renderFunction() {
 
     word.style.borderColor = "black"
     showForm()
+
 
 
 
@@ -138,6 +135,8 @@ async function renderFunction() {
             word.style.borderColor = "red"
         }
     }
+
+
 }
 
 
@@ -147,8 +146,6 @@ const celebrateCorrect = async () => {
     icon.style.display = "none"
 
 }
-
-
 
 
 // next function

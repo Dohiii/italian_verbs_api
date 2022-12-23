@@ -354,6 +354,15 @@ textarea::placeholder {
   font-size: 12px;
 }
 
+#pdopowiedż {
+  /* display: none; */
+  background-color: rgb(45, 164, 2);
+}
+
+#pdopowiedż:hover {
+  background-color: #fff;
+}
+
 .italian-letters {
   display: flex;
   flex-direction: row;
