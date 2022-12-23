@@ -14,6 +14,7 @@ const btnLetter = document.querySelectorAll(".btn-italian-letter");
 
 const submit = document.getElementById("submit")
 const new_verb = document.getElementById("new_verb")
+const helpBtn = document.getElementById("pdopowiedż")
 
 // Utils
 let checkboxValueChecked = []
@@ -89,6 +90,12 @@ async function renderFunction() {
     submit.addEventListener("click", (e) => {
         e.preventDefault()
         submitVerb()
+
+    })
+
+    helpBtn.addEventListener("click", (e) => {
+        e.preventDefault()
+        word.value = verb.correctWord
 
     })
 

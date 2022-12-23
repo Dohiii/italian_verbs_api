@@ -350,6 +350,10 @@ textarea::placeholder {
   margin-bottom: 15px;
 }
 
+.buttons-container input {
+  font-size: 12px;
+}
+
 .italian-letters {
   display: flex;
   flex-direction: row;
