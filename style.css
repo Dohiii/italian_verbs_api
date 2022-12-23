@@ -360,7 +360,7 @@ textarea::placeholder {
 }
 
 #pdopowiedż {
-  /* display: none; */
+  display: none;
   background-color: rgb(45, 164, 2);
 }
 

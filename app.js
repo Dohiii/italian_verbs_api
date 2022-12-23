@@ -18,7 +18,7 @@ const helpBtn = document.getElementById("pdopowiedż")
 
 // Utils
 let checkboxValueChecked = []
-let count = []
+
 
 // deployed url
 // https://italian-verbs.onrender.com
@@ -28,6 +28,7 @@ let count = []
 // console.log(checkboxValueChecked)
 
 async function renderFunction() {
+    const count = [1]
     let charactersSelected = await getValueCheckbox();
     let categorySelected = await category.value
     let charString = charactersSelected.join("")
@@ -40,6 +41,7 @@ async function renderFunction() {
     if (categorySelected === "all") {
         categorySelected = ["regularny", "nieregularny"][Math.floor(Math.random() * 2)];
     }
+
 
     // const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}`
     const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}`
@@ -74,25 +76,26 @@ async function renderFunction() {
 
         verb.correctWord = correctVerbArr
 
-
     }
-
-    console.log(verb.correctWord)
-
-
 
     submit.addEventListener("click", (e) => {
         e.preventDefault()
-
         submitVerb()
+        if (count[0] >= 3) {
+            helpBtn.style.display = "block"
+            count[0] = 0
+        }
+        count[0]++
 
+        console.log(count)
     })
 
     helpBtn.addEventListener("click", (e) => {
         e.preventDefault()
+        count[0] = 0
         word.value = verb.correctWord
-        // helpBtn.style.display = "none"
-        count.length = 0
+        helpBtn.style.display = "none"
+
     })
 
     word.addEventListener("keypress", function (event) {
