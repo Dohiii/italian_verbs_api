@@ -123,7 +123,7 @@ async function renderFunction() {
                 verb.correctWord.includes(inputetWord)
             ) {
                 renderFunction()
-                alert("Correct")
+                celebrateCorrect()
                 word.value = ""
             }
         }
@@ -247,8 +247,6 @@ const pingServer = async () => {
     loader.style.display = "none"
     form.style.display = "block"
 }
-
-
 
 
 

@@ -4,10 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="./style.css" />
@@ -20,17 +19,58 @@
       <div class="loader"></div>
       <div class="clock-loader"></div>
 
-
-
-      <form class="form">
-        <!-- Category selector -->
+      <div class="main-section">
+        <div class="logo">
+          <img src="./images/CiSTA Czarny.png" alt="" srcset="">
+          <h4>Zaznacz wybraną formę czasownika</h4>
+        </div>
         
+        <!-- Category selector -->
+        <label id="category-label" for="category">Wybierż</label>
+        <select id="category" name="categoria-osoba" class="categoria-osoba">
+          <option value="all">Wszystkie</option>
+          <option value="regularny">regularny</option>
+          <option value="nieregularny">nieregularny</option>
+        </select>
+
+        <!-- Rendered Verbs Information -->
+        <div id="verb_information">
+          <div id="cas_i_tlumaczenie">
+            <p id="czasownik"></p>
+            <p id="tlumaczenie"></p>
+          </div>
+          <p id="tense"></p>
+        </div>
+
+        <label for="name" id="tense"></label>
+        <div id="correctWord">
+          <label for="name" id="osoba"></label>
+          <div class="input-icons">
+          <i class="fa fa-check-circle fa-2xl icon" aria-hidden="true"></i>
+          <input type="text" id="name" placeholder="Wpisz poprawny czasownik" />
+        </div>
+      </div>
+
+        <div class="italian-letters">
+          <button class="btn-italian-letter">à</button>
+          <button class="btn-italian-letter">è</button>
+          <button class="btn-italian-letter">ì</button>
+          <button class="btn-italian-letter">ò</button>
+        </div>
+  
+        <!-- Buttons -->
+        <div class="buttons-container">
+          <input id="submit" type="submit" value="Zatwierdź" />
+          <input type="submit" id="new_verb" value="Inny czasownik" />
+        </div>
+      </div>
+
+
+      <form class="form">  
         <!-- Checkobxes Tenses -->
-      
         <div class="checkboxes">
           <!-- <h4>Select Tense</h4> -->
-          <h2>Zaznacz wybraną formę czasownika</h2>
-          <hr>
+        <div class="column-1"> <hr>
           <h3>Indicativo</h3>
           <div class="checkbox-wrapper-32">
             <input type="checkbox" value="Presente Indicativo" name="checkbox_char" id="Presente Indicativo" checked>
@@ -125,7 +165,14 @@
             </svg>
           </div>
 
+        
+        
+        </div>
+
+
+        <div class="column-2"> 
           
+            
           <hr>
           <h3>Congiuntivo</h3>
           <div class="checkbox-wrapper-32">
@@ -171,9 +218,8 @@
               <path d="M 90 10 L 10 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
             </svg>
           </div>
-
-
-
+          
+          
           <hr>
           <h3>Condizionale</h3>
           <div class="checkbox-wrapper-32">
@@ -186,8 +232,6 @@
               <path d="M 90 10 L 10 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
             </svg>
           </div>
-
-
 
           <div class="checkbox-wrapper-32">
             <input type="checkbox" value="Passato Condizionale" name="checkbox_char" id="Passato Condizionale">
@@ -213,51 +257,14 @@
               <path d="M 90 10 L 10 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
             </svg>
           </div>
-  
         </div>
-
-        <label for="category">Select a category</label>
-        <select id="category" name="categoria-osoba" class="categoria-osoba">
-          <option value="all">Wszystkie</option>
-          <option value="regularny">regularny</option>
-          <option value="nieregularny">nieregularny</option>
-        </select>
-
-        <!-- Rendered Verbs Information -->
-        <div id="verb_information">
-          <div id="cas_i_tlumaczenie">
-            <p id="czasownik"></p>
-            <p id="tlumaczenie"></p>
-          </div>
-          <p id="tense"></p>
-        </div>
-
-        <label for="name" id="tense"></label>
-        <div id="correctWord">
+</div>
+         
 
 
-          <label for="name" id="osoba"></label>
-<div class="input-icons">
-          <i class="fa fa-check-circle fa-2xl icon" aria-hidden="true"></i>
 
-          <input type="text" id="name" placeholder="Wpisz poprawny czasownik" />
-        </div>
-      </div>
-        <div class="italian-letters">
-          <button class="btn-italian-letter">à</button>
-          <button class="btn-italian-letter">è</button>
-          <button class="btn-italian-letter">ì</button>
-          <button class="btn-italian-letter">ò</button>
-        </div>
-
-
-        <!-- Buttons -->
-        <div class="buttons-container">
-          <input id="submit" type="submit" value="Zatwierdź" />
-          <input type="submit" id="new_verb" value="Inny czasownik" />
-
-        </div>
-
+         
+     
       </form>
     </div>
     <!-- partial -->
