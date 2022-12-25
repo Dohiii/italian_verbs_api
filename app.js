@@ -10,6 +10,10 @@ const icon = document.querySelector(".icon")
 
 
 const checkboxes = document.querySelectorAll("input[name=checkbox_char]");
+const checkboxesOsoba = document.querySelectorAll("input[name=checkbox_osoba]");
+const allCheckboxes = document.querySelectorAll("input[type=checkbox]");
+const checkboxAll = document.querySelector("input[name=checkbox_all]");
+const uncheckAll = document.querySelector("input[name=checkbox_un_all]");
 const btnLetter = document.querySelectorAll(".btn-italian-letter");
 
 const submit = document.getElementById("submit")
@@ -18,6 +22,7 @@ const helpBtn = document.getElementById("pdopowiedż")
 
 // Utils
 let checkboxValueChecked = []
+let checkboxOsobaValueChecked = []
 
 
 // deployed url
@@ -26,25 +31,36 @@ let checkboxValueChecked = []
 
 
 // console.log(checkboxValueChecked)
-
 async function renderFunction() {
     const count = [1]
-    let charactersSelected = await getValueCheckbox();
+    let charactersSelected = await getValueCheckbox(checkboxes, "tense");
+    let osobaSelected = await getValueCheckbox(checkboxesOsoba, "osoba");
+
+
+
     let categorySelected = await category.value
     let charString = charactersSelected.join("")
+    let osobaString = osobaSelected.join("")
+
 
     // charactersSelected.join("")
     if (charString.length === 0) {
         charString = `&tense=Presente Indicativo`
     }
 
+
+    if (osobaString.length === 0) {
+        osobaString = `&osoba=IO`
+    }
+
     if (categorySelected === "all") {
         categorySelected = ["regularny", "nieregularny"][Math.floor(Math.random() * 2)];
     }
 
+    console.log(osobaString)
 
-    // const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}`
-    const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}`
+    const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}`
+    // const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}`
 
     // console.log(url)
 
@@ -152,11 +168,11 @@ const celebrateCorrect = async () => {
 
 
 // next function
-const getValueCheckbox = async () => {
+const getValueCheckbox = async (arr, str) => {
     let result = [];
-    for (let i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
-            result.push(`&tense=${checkboxes[i].value}`)
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].checked) {
+            result.push(`&${str}=${arr[i].value}`)
         }
     }
     return result;
@@ -184,6 +200,34 @@ checkboxes.forEach(function (checkbox) {
         renderFunction()
     })
 });
+
+// Use Array.forEach to add an event listener to each checkbox.
+checkboxesOsoba.forEach(function (checkbox) {
+    checkbox.addEventListener('change', function () {
+        checkboxOsobaValueChecked =
+            Array.from(checkboxesOsoba) // Convert checkboxes to an array to use filter and map.
+                .filter(i => i.checked) // Use Array.filter to remove unchecked checkboxes.
+                .map(i => `&osoba=${i}`) // Use Array.map to extract only the checkbox values from the array of objects.
+        renderFunction()
+    })
+});
+
+
+checkboxAll.addEventListener('change', chk => {
+    console.log(allCheckboxes)
+    for (i = 0; i < allCheckboxes.length; i++)
+        allCheckboxes[i].checked = true;
+})
+
+
+uncheckAll.addEventListener('change', chk => {
+    console.log(allCheckboxes)
+    for (i = 0; i < allCheckboxes.length; i++)
+        allCheckboxes[i].checked = false;
+})
+
+
+
 
 
 btnLetter.forEach(btn => {
@@ -235,8 +279,6 @@ function delay(n) {
         setTimeout(resolve, n * 1000);
     });
 }
-
-
 
 
 const pingServer = async () => {
