@@ -291,6 +291,9 @@ html {
   stroke-width: calc(var(--size) / 2);
 }
 
+.zwrotne {
+  margin-left: 4rem;
+}
 #name {
   --border-size: 2px;
   width: 90%;
