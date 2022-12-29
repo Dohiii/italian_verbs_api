@@ -56,7 +56,7 @@
         <div class="buttons-container">
           <input id="submit" type="submit" value="Zatwierdź" />
           <input type="submit" id="new_verb" value="Inny czasownik" />
-          <input type="submit" id="pdopowiedż" value="Pdopowiedż" />
+          <input type="submit" id="pdopowiedż" value="Odpowiedz" />
         </div>
       </div>
 
@@ -65,94 +65,25 @@
            <!-- Category selector -->
 
 <div class="category">
-  <!-- <h3>Wybierz kategorię</h3>
-  <div class="checkbox-wrapper-32">
-    <input type="checkbox" value="wszystkie" name="checkbox_char" id="wszystkie" checked>
-    <label for="wszystkie">
-      wszystkie
-    </label>
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 10 10 L 90 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
-      <path d="M 90 10 L 10 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
-    </svg>
-  </div>
-
-  <div class="checkbox-wrapper-32">
-    <input type="checkbox" value="nieregularny" name="checkbox_char" id="nieregularny">
-    <label for="nieregularny">
-      regularny
-    </label>
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 10 10 L 90 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
-      <path d="M 90 10 L 10 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
-    </svg>
-  </div>
-
-  <div class="checkbox-wrapper-32">
-    <input type="checkbox" value="nieregularny" name="checkbox_char" id="nieregularny">
-    <label for="nieregularny">
-      nieregularny
-    </label>
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 10 10 L 90 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
-      <path d="M 90 10 L 10 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
-    </svg>
-  </div>
-
-
-  <div class="checkbox-wrapper-32">
-    <input type="checkbox" value="zwrotne" name="checkbox_char" id="zwrotne">
-    <label for="zwrotne">
-      zwrotne
-    </label>
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 10 10 L 90 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
-      <path d="M 90 10 L 10 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
-    </svg>
-  </div>
-</div> -->
-
-
-
-
+ 
            <label id="category-label" for="category">Wybierz kategorię</label>
            <select id="category" name="categoria-osoba" class="categoria-osoba">
              <option value="all">Wszystkie</option>
              <option value="regularny">regularny</option>
              <option value="nieregularny">nieregularny</option>
            </select>
-
-
-           <div class="all_checkboxes">
-            <div class="checkbox-wrapper-32 all">
-              <input type="checkbox" value="all" name="checkbox_all" id="all">
-              <label for="all">
-                Zaznacz wszystko
-              </label>
-              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 10 10 L 90 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
-                <path d="M 90 10 L 10 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
-              </svg>
-            </div>
-  
-             <div class="checkbox-wrapper-32 all">
-              <input type="checkbox" value="all" name="checkbox_un_all" id="checkbox_un_all">
-              <label for="checkbox_un_all">
-                Odznacz wszystko
-              </label>
-              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 10 10 L 90 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
-                <path d="M 90 10 L 10 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
-              </svg>
-            </div>
            </div>
 
-<hr>
+          <hr>
+
+
+
            <div class="zwrotne_checkboxes">
+            <h3>Zwrotne</h3>
             <div class="checkbox-wrapper-32 zwrotne">
-              <input type="checkbox" value="zwrotne" name="checkbox_zwrotne" id="zwrotne">
-              <label for="zwrotne">
-                Zwrotne
+              <input type="radio" value="true" name="checkbox_zwrotne" id="zwrotne-tak" >
+              <label for="zwrotne-tak">
+                Tak
               </label>
               <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <path d="M 10 10 L 90 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
@@ -160,7 +91,21 @@
               </svg>
             </div>
 
-           </div>
+
+              <div class="checkbox-wrapper-32 zwrotne">
+                <input type="radio" value="false" name="checkbox_zwrotne" id="zwrotne-nie" checked>
+                <label for="zwrotne-nie">
+                  Nie
+                </label>
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M 10 10 L 90 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
+                  <path d="M 90 10 L 10 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
+                </svg>
+              </div>
+
+
+          </div>
+           
 
  
 
@@ -249,18 +194,39 @@
 
 
 
+<h3 class="wybirerz-czas-h3">Wybierz czas</h3>
+
+
+<div class="all_checkboxes">
+  <div class="checkbox-wrapper-32 all">
+    <input type="radio" value="all" name="checkbox_all" id="all">
+    <label for="all">
+      Zaznacz wszystko
+    </label>
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 10 10 L 90 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
+      <path d="M 90 10 L 10 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
+    </svg>
+  </div>
+
+   <div class="checkbox-wrapper-32 all">
+    <input type="radio" value="all" name="checkbox_un_all" id="checkbox_un_all">
+    <label for="checkbox_un_all">
+      Odznacz wszystko
+    </label>
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 10 10 L 90 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
+      <path d="M 90 10 L 10 90" stroke="#000" stroke-dasharray="113" stroke-dashoffset="113"></path>
+    </svg>
+  </div>
+ </div>
+
+
         <!-- Checkobxes Tenses -->
         <div class="checkboxes">
-
-
-
-          
-
-
-
-         
+  
           <!-- <h4>Select Tense</h4> -->
-        <div class="column-1"> <hr>
+        <div class="column-1">
           <h3>Indicativo</h3>
           <div class="checkbox-wrapper-32">
             <input type="checkbox" value="Presente Indicativo" name="checkbox_char" id="Presente Indicativo" checked>
@@ -363,7 +329,6 @@
         <div class="column-2"> 
           
             
-          <hr>
           <h3>Congiuntivo</h3>
           <div class="checkbox-wrapper-32">
             <input type="checkbox" value="Presente Congiuntivo" name="checkbox_char" id="Presente Congiuntivo">

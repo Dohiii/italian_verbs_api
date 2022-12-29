@@ -6,10 +6,11 @@ const tense = document.getElementById("tense")
 const osoba = document.getElementById("osoba")
 const word = document.getElementById("name")
 const icon = document.querySelector(".icon")
-const zwrotne = document.getElementById("zwrotne")
+
 
 
 const checkboxes = document.querySelectorAll("input[name=checkbox_char]");
+const zwrotne = document.querySelectorAll("input[name=checkbox_zwrotne]")
 const checkboxesOsoba = document.querySelectorAll("input[name=checkbox_osoba]");
 const allCheckboxes = document.querySelectorAll("input[type=checkbox]");
 const checkboxAll = document.querySelector("input[name=checkbox_all]");
@@ -35,11 +36,12 @@ async function renderFunction() {
     const count = [1]
     let charactersSelected = await getValueCheckbox(checkboxes, "tense");
     let osobaSelected = await getValueCheckbox(checkboxesOsoba, "osoba");
-    let zwrotneValue = false
+    let getZwrotne = await getValueCheckbox(zwrotne, "zwrotne")
+    // console.log(getZwrotne)
 
-    if (zwrotne.checked) {
-        zwrotneValue = true
-    }
+    // if (zwrotne.checked) {
+    //     zwrotneValue = true
+    // }
 
     let categorySelected = await category.value
     let charString = charactersSelected.join("")
@@ -60,10 +62,10 @@ async function renderFunction() {
         categorySelected = ["regularny", "nieregularny"][Math.floor(Math.random() * 2)];
     }
 
-    console.log(osobaString)
+    // console.log(osobaString)
 
-    // const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}&zwrotne=${zwrotneValue}`
-    const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}&zwrotne=${zwrotneValue}`
+    const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne}`
+    // const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}&zwrotne=${zwrotneValue}`
 
     // console.log(url)
 
@@ -71,6 +73,10 @@ async function renderFunction() {
     // console.log(charactersSelected, categorySelected)
 
     const verb = data.verb
+    // console.log(verb.correctWord)
+    // console.log(verb)
+
+    // console.log(verb.correctWord)
 
     // console.log(verb)
     const capitalizedVerb =
@@ -190,11 +196,13 @@ category.addEventListener('change', (event) => {
 });
 
 // selector event listener
-zwrotne.addEventListener('change', (event) => {
-    // const result = document.querySelector('.result');
-    // result.textContent = `You like ${event.target.value}`;
-    renderFunction()
-});
+zwrotne.forEach(zwrot => {
+    zwrot.addEventListener('change', (event) => {
+        // const result = document.querySelector('.result');
+        // result.textContent = `You like ${event.target.value}`;
+        renderFunction()
+    });
+})
 
 
 // checkboxes event listener
@@ -224,16 +232,17 @@ checkboxesOsoba.forEach(function (checkbox) {
 
 
 checkboxAll.addEventListener('change', chk => {
-    console.log(allCheckboxes)
-    for (i = 0; i < allCheckboxes.length; i++)
-        allCheckboxes[i].checked = true;
+    uncheckAll.checked = false
+    for (i = 0; i < checkboxes.length; i++)
+        checkboxes[i].checked = true;
 })
 
 
 uncheckAll.addEventListener('change', chk => {
-    console.log(allCheckboxes)
-    for (i = 0; i < allCheckboxes.length; i++)
-        allCheckboxes[i].checked = false;
+    checkboxAll.checked = false
+    // uncheckAll.checked = false
+    for (i = 0; i < checkboxes.length; i++)
+        checkboxes[i].checked = false;
 })
 
 

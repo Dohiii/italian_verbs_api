@@ -51,6 +51,7 @@ body {
 
 .category {
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 #category-label {
@@ -190,6 +191,14 @@ html {
 
 /* Checkboxes */
 
+.zwrotne_checkboxes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+  margin-left: 2rem;
+}
+
 .all_checkboxes {
   display: flex;
   flex-direction: row;
@@ -232,13 +241,15 @@ html {
   box-sizing: border-box;
 }
 
-.checkbox-wrapper-32 input[type="checkbox"] {
+.checkbox-wrapper-32 input[type="checkbox"],
+input[type="radio"] {
   display: inline-block;
   vertical-align: middle;
   opacity: 0;
 }
 
 .checkbox-wrapper-32 input[type="checkbox"],
+input[type="radio"],
 .checkbox-wrapper-32 label::before {
   width: var(--size);
   height: var(--size);
@@ -265,6 +276,10 @@ html {
 .checkbox-wrapper-32 input[type="checkbox"]:checked + label::before {
   opacity: 1;
 }
+.checkbox-wrapper-32,
+input[type="radio"]:checked + label::before {
+  opacity: 1;
+}
 
 .checkbox-wrapper-32 svg {
   position: absolute;
@@ -287,6 +302,10 @@ html {
 }
 
 .checkbox-wrapper-32 input[type="checkbox"]:checked ~ svg path {
+  stroke-dashoffset: 0;
+  stroke-width: calc(var(--size) / 2);
+}
+.checkbox-wrapper-32 input[type="radio"]:checked ~ svg path {
   stroke-dashoffset: 0;
   stroke-width: calc(var(--size) / 2);
 }
@@ -371,8 +390,10 @@ textarea::placeholder {
 .buttons-container {
   display: flex;
   flex-direction: row;
-  margin-left: auto;
-  justify-content: center;
+  max-width: 500px;
+  flex-wrap: wrap;
+  /* align-items: center;
+  justify-content: center; */
   margin-bottom: 15px;
 }
 
@@ -455,6 +476,10 @@ textarea::placeholder {
     display: flex;
     flex-direction: column;
   }
+  .wybirerz-czas-h3 {
+    margin-left: 2rem;
+    margin-bottom: 0px;
+  }
 
   .osoba-checkboxes {
     display: flex;
@@ -467,6 +492,7 @@ textarea::placeholder {
   .checkboxes {
     display: flex;
     flex-direction: row;
+    margin-top: 0px;
   }
 
   .loader {
