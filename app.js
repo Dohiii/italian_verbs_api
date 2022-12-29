@@ -69,109 +69,107 @@ async function renderFunction() {
 
     // console.log(osobaString)
 
-    // const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne}`
-    const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne[0]}`
+    const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne}`
+    //    const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne[0]}`
 
     console.log(getZwrotne[0])
     console.log(url)
 
     // console.log(url)
+    try {
+        const data = await getData(url)
+        // console.log(charactersSelected, categorySelected)
 
-    const data = await getData(url)
-    // console.log(charactersSelected, categorySelected)
+        const verb = data.verb
+        const capitalizedVerb =
+            verb.czasownik.charAt(0).toUpperCase()
+            + verb.czasownik.slice(1)
 
-    const verb = data.verb
-    // console.log(verb.correctWord)
-    // console.log(verb)
+        czasownik.textContent = capitalizedVerb
+        tlumaczenie.textContent = `(${verb.tlumaczenie})`
+        tense.textContent = verb.tense
+        osoba.textContent = verb.pluc
 
-    // console.log(verb.correctWord)
+        let correctVerbArr = []
 
-    // console.log(verb)
-    const capitalizedVerb =
-        verb.czasownik.charAt(0).toUpperCase()
-        + verb.czasownik.slice(1)
+        if (verb.correctWord.includes(";") || verb.correctWord.includes(",")) {
+            // verb.correctWord
+            const tempArr = verb.correctWord.split(/[;,]/)
 
-    czasownik.textContent = capitalizedVerb
-    tlumaczenie.textContent = `(${verb.tlumaczenie})`
-    tense.textContent = verb.tense
-    osoba.textContent = verb.pluc
+            tempArr.forEach(word => {
+                const newWord = word.trim()
+                correctVerbArr.push(newWord)
+            })
 
-    let correctVerbArr = []
+            verb.correctWord = correctVerbArr
 
-    if (verb.correctWord.includes(";") || verb.correctWord.includes(",")) {
-        // verb.correctWord
-        const tempArr = verb.correctWord.split(/[;,]/)
+        }
 
-        tempArr.forEach(word => {
-            const newWord = word.trim()
-            correctVerbArr.push(newWord)
+        submit.addEventListener("click", (e) => {
+            e.preventDefault()
+            submitVerb()
+            if (count[0] >= 3) {
+                helpBtn.style.display = "block"
+                count[0] = 0
+            }
+            count[0]++
+
+            console.log(count)
         })
 
-        verb.correctWord = correctVerbArr
-
-    }
-
-    submit.addEventListener("click", (e) => {
-        e.preventDefault()
-        submitVerb()
-        if (count[0] >= 3) {
-            helpBtn.style.display = "block"
+        helpBtn.addEventListener("click", (e) => {
+            e.preventDefault()
             count[0] = 0
-        }
-        count[0]++
+            word.value = verb.correctWord
+            helpBtn.style.display = "none"
 
-        console.log(count)
-    })
+        })
 
-    helpBtn.addEventListener("click", (e) => {
-        e.preventDefault()
-        count[0] = 0
-        word.value = verb.correctWord
-        helpBtn.style.display = "none"
+        word.addEventListener("keypress", function (event) {
+            // If the user presses the "Enter" key on the keyboard
+            if (event.key === "Enter") {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Trigger the button element with a click
+                submitVerb()
+            }
+        });
 
-    })
-
-    word.addEventListener("keypress", function (event) {
-        // If the user presses the "Enter" key on the keyboard
-        if (event.key === "Enter") {
-            // Cancel the default action, if needed
-            event.preventDefault();
-            // Trigger the button element with a click
-            submitVerb()
-        }
-    });
-
-    word.style.borderColor = "black"
-    showForm()
+        word.style.borderColor = "black"
+        showForm()
 
 
 
 
-    // submit verb:
-    const submitVerb = async () => {
-        const inputetWord = word.value.toLowerCase()
-        if (typeof verb.correctWord === "string") {
-            if (inputetWord === verb.correctWord) {
-                renderFunction()
-                celebrateCorrect()
-                word.value = ""
+        // submit verb:
+        const submitVerb = async () => {
+            const inputetWord = word.value.toLowerCase()
+            if (typeof verb.correctWord === "string") {
+                if (inputetWord === verb.correctWord) {
+                    renderFunction()
+                    celebrateCorrect()
+                    word.value = ""
+                }
+            }
+
+            if (typeof verb.correctWord === "object") {
+                if (
+                    verb.correctWord.includes(inputetWord)
+                ) {
+                    renderFunction()
+                    celebrateCorrect()
+                    word.value = ""
+                }
+            }
+            if (inputetWord !== correctWord) {
+                word.style.borderColor = "red"
             }
         }
-
-        if (typeof verb.correctWord === "object") {
-            if (
-                verb.correctWord.includes(inputetWord)
-            ) {
-                renderFunction()
-                celebrateCorrect()
-                word.value = ""
-            }
-        }
-        if (inputetWord !== correctWord) {
-            word.style.borderColor = "red"
-        }
+    } catch (e) {
+        czasownik.textContent = "Nie ma czasownika z taką konfigracją"
+        tlumaczenie.textContent = ""
+        tense.textContent = ""
     }
-
 
 }
 
