@@ -15,6 +15,11 @@ const checkboxesOsoba = document.querySelectorAll("input[name=checkbox_osoba]");
 const allCheckboxes = document.querySelectorAll("input[type=checkbox]");
 const checkboxAll = document.querySelector("input[name=checkbox_all]");
 const uncheckAll = document.querySelector("input[name=checkbox_un_all]");
+
+const checkboxAll_osoba = document.querySelector("input[name=checkbox_all_osoba]");
+const uncheckAll_osoba = document.querySelector("input[name=checkbox_un_all_osoba]");
+
+
 const btnLetter = document.querySelectorAll(".btn-italian-letter");
 
 const submit = document.getElementById("submit")
@@ -243,6 +248,21 @@ uncheckAll.addEventListener('change', chk => {
     // uncheckAll.checked = false
     for (i = 0; i < checkboxes.length; i++)
         checkboxes[i].checked = false;
+})
+
+
+checkboxAll_osoba.addEventListener('change', chk => {
+    uncheckAll_osoba.checked = false
+    for (i = 0; i < checkboxesOsoba.length; i++)
+        checkboxesOsoba[i].checked = true;
+})
+
+
+uncheckAll_osoba.addEventListener('change', chk => {
+    checkboxAll_osoba.checked = false
+    // uncheckAll.checked = false
+    for (i = 0; i < checkboxesOsoba.length; i++)
+        checkboxesOsoba[i].checked = false;
 })
 
 
