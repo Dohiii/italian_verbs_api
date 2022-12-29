@@ -198,6 +198,13 @@ html {
   /* justify-content: center; */
   margin-left: 2rem;
 }
+.zwrotne_checkboxes h3 {
+  margin-bottom: 15px;
+}
+
+.all_checkboxes_osoba {
+  margin-top: 1px;
+}
 
 .all_checkboxes {
   display: flex;
@@ -210,6 +217,10 @@ html {
 
 .osoba h3 {
   margin-left: 2rem;
+}
+
+h3 {
+  margin-bottom: 1px;
 }
 
 .osoba-checkboxes {
