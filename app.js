@@ -72,6 +72,8 @@ async function renderFunction() {
     // const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne}`
     const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne}`
 
+    console.log(getZwrotne)
+
     // console.log(url)
 
     const data = await getData(url)
