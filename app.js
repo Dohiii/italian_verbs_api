@@ -70,7 +70,7 @@ async function renderFunction() {
     // console.log(osobaString)
 
     // const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne}`
-    const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${zwrotneValue}`
+    const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne}`
 
     // console.log(url)
 
