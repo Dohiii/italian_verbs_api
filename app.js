@@ -168,7 +168,7 @@ async function renderFunction() {
     } catch (e) {
         czasownik.textContent = "Nie ma czasownika z taką konfigracją"
         tlumaczenie.textContent = ""
-        tense.textContent = ""
+        // tense.textContent = ""
     }
 
 }
