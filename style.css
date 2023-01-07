@@ -221,6 +221,15 @@ html {
 
 h3 {
   margin-bottom: 1px;
+  margin-left: 2rem;
+}
+
+.zwrotne_checkboxes h3 {
+  margin-left: 0rem;
+}
+
+.column-1 {
+  margin-top: -50px;
 }
 
 .osoba-checkboxes {
@@ -465,6 +474,10 @@ textarea::placeholder {
     justify-content: center;
     align-items: center;
   }
+
+  .column-1 {
+    margin-top: 5px;
+  }
 }
 
 @media (min-width: 800px) {
@@ -476,6 +489,10 @@ textarea::placeholder {
     padding-left: 3rem;
     padding-right: 1rem;
     border-radius: 15px;
+  }
+
+  .column-1 {
+    margin-top: 5px;
   }
 
   .main-section {
