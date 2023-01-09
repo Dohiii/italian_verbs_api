@@ -460,15 +460,16 @@ textarea::placeholder {
 }
 
 @media (max-width: 600px) {
-  .main-section,
-  form {
+  .main-sectio {
     background-color: #fff;
     padding: 2rem;
     border-radius: 15px;
   }
 
   form {
-    max-width: 90%;
+    background-color: #fff;
+    padding: 0.5rem;
+    border-radius: 15px;
   }
 }
 
