@@ -459,6 +459,15 @@ textarea::placeholder {
   background-color: rgb(155, 152, 152);
 }
 
+@media (max-width: 600px) {
+  .main-section,
+  form {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+  }
+}
+
 @media (min-width: 600px) {
   form,
   .main-section {
