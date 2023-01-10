@@ -5,9 +5,8 @@ const tlumaczenie = document.getElementById("tlumaczenie")
 const tense = document.getElementById("tense")
 const osoba = document.getElementById("osoba")
 const word = document.getElementById("name")
+const inputGreen = document.getElementById("input-green")
 const icon = document.querySelector(".icon")
-
-
 
 const checkboxes = document.querySelectorAll("input[name=checkbox_char]");
 const zwrotne = document.querySelectorAll("input[name=checkbox_zwrotne]")
@@ -30,6 +29,9 @@ const helpBtn = document.getElementById("pdopowiedż")
 let checkboxValueChecked = []
 let checkboxOsobaValueChecked = []
 
+let count = [0]
+
+
 
 // deployed url
 // https://italian-verbs.onrender.com
@@ -38,7 +40,7 @@ let checkboxOsobaValueChecked = []
 
 // console.log(checkboxValueChecked)
 async function renderFunction() {
-    const count = [1]
+
     let charactersSelected = await getValueCheckbox(checkboxes, "tense");
     let osobaSelected = await getValueCheckbox(checkboxesOsoba, "osoba");
     let getZwrotne = await getValueCheckbox(zwrotne, "zwrotne")
@@ -72,9 +74,6 @@ async function renderFunction() {
     // const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne}`
     const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne[0]}`
 
-    console.log(getZwrotne[0])
-    console.log(url)
-
     // console.log(url)
     try {
         const data = await getData(url)
@@ -89,6 +88,9 @@ async function renderFunction() {
         tlumaczenie.textContent = `(${verb.tlumaczenie})`
         tense.textContent = verb.tense
         osoba.textContent = verb.pluc
+
+        console.log(verb.correctWord)
+        console.log(count)
 
         let correctVerbArr = []
 
@@ -105,24 +107,22 @@ async function renderFunction() {
 
         }
 
+
+        word.style.borderColor = "black"
+        showForm()
+
+        // LISTENERS
+
         submit.addEventListener("click", (e) => {
             e.preventDefault()
             submitVerb()
-            if (count[0] >= 3) {
-                helpBtn.style.display = "block"
-                count[0] = 0
-            }
-            count[0]++
-
-            console.log(count)
         })
 
         helpBtn.addEventListener("click", (e) => {
             e.preventDefault()
-            count[0] = 0
             word.value = verb.correctWord
             helpBtn.style.display = "none"
-
+            count[0] = 0
         })
 
         word.addEventListener("keypress", function (event) {
@@ -135,14 +135,17 @@ async function renderFunction() {
             }
         });
 
-        word.style.borderColor = "black"
-        showForm()
-
-
-
-
         // submit verb:
         const submitVerb = async () => {
+            count[0]++
+
+            if (count[0] >= 3) {
+                helpBtn.style.display = "block"
+            }
+
+            console.log(count)
+
+
             const inputetWord = word.value.toLowerCase()
             if (typeof verb.correctWord === "string") {
                 if (inputetWord === verb.correctWord) {
@@ -166,17 +169,30 @@ async function renderFunction() {
             }
         }
     } catch (e) {
-        czasownik.textContent = "Nie ma czasownika z taką konfiguracją"
+        czasownik.textContent = "Spróbuj inny czasownik"
         tlumaczenie.textContent = ""
         // tense.textContent = ""
     }
+
+
+
+
 
 }
 
 
 const celebrateCorrect = async () => {
+
+    // count[0] = 0
     icon.style.display = "block"
-    await delay(1.5)
+    word.style.display = "none"
+    inputGreen.style.display = "block"
+    submit.disabled = true
+    helpBtn.style.display = "none"
+    await delay(2)
+    submit.disabled = false
+    word.style.display = "block"
+    inputGreen.style.display = "none"
     icon.style.display = "none"
 
 }
@@ -347,3 +363,5 @@ try {
 } finally {
     renderFunction()
 }
+
+

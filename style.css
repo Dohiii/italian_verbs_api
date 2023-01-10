@@ -69,6 +69,12 @@ body {
   margin: 1rem;
 }
 
+#input-green {
+  border: 2px solid green;
+  display: none;
+  width: 90%;
+}
+
 .input-icons i {
   position: absolute;
 }
@@ -81,7 +87,7 @@ body {
 .icon {
   padding: 10px;
   margin-top: 9px;
-  margin-left: 300px;
+  margin-left: 150px;
   color: green;
   min-width: 50px;
   text-align: center;
@@ -188,6 +194,17 @@ html {
 [type="submit"]:hover {
   background: #fff;
   color: #000;
+}
+
+[type="submit"]:disabled {
+  background-color: rgb(114, 113, 113);
+  color: black;
+  border: none;
+}
+[type="submit"]:disabled:hover {
+  background-color: rgb(114, 113, 113);
+  color: black;
+  border: none;
 }
 
 /* Checkboxes */
