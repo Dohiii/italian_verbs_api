@@ -358,8 +358,8 @@ function stopInterval() {
 }
 
 
-mainFormFunction()
 startInterval()
+mainFormFunction()
 
 
 
