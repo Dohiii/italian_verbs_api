@@ -295,8 +295,8 @@ btnLetter.forEach(btn => {
 })
 
 
-const getData = async (url) => {
-    const response = await fetch(url)
+const getData = async (url_ping) => {
+    const response = await fetch(url_ping)
 
     if (response.ok) {
         console.log("OK")
