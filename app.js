@@ -82,6 +82,7 @@ const submitVerb = async () => {
         if (inputetWord === correctWordValue) {
             mainFormFunction()
             celebrateCorrect()
+            word.style.borderColor = "black"
             word.value = ""
         }
     }
@@ -95,12 +96,14 @@ const submitVerb = async () => {
         ) {
             mainFormFunction()
             celebrateCorrect()
+            word.style.borderColor = "black"
             word.value = ""
         }
     }
     if (inputetWord !== correctWordValue) {
         word.style.borderColor = "red"
     }
+
 }
 
 
@@ -333,7 +336,6 @@ const pingServer = async () => {
     showLoader()
     try {
         const url = "https://italian-verbs.onrender.com/api/v1/verbs?categoria=nieregularny&tense=Presente Indicativo&osoba=IO&zwrotne=false"
-        const url2 = "https:/italian-verbs.onrender.com/api/v1/verbs/ping"
 
         const ping = await fetch(url)
         // const ping = await getData("http://127.0.0.1:3000/api/v1/verbs/ping")
@@ -358,8 +360,9 @@ function stopInterval() {
 }
 
 
-startInterval()
 mainFormFunction()
+startInterval()
+
 
 
 
