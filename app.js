@@ -332,8 +332,8 @@ function delay(n) {
 const pingServer = async () => {
     showLoader()
     try {
-        // const ping = await fetch("https:/italian-verbs.onrender.com/api/v1/verbs/ping")
-        const ping = await getData("http://127.0.0.1:3000/api/v1/verbs/ping")
+        const ping = await fetch("https:/italian-verbs.onrender.com/api/v1/verbs/ping")
+        // const ping = await getData("http://127.0.0.1:3000/api/v1/verbs/ping")
         console.log(ping.status)
         if (ping.status === 200) {
             stopInterval()
