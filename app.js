@@ -335,13 +335,12 @@ const pingServer = async () => {
         const url = "https://italian-verbs.onrender.com/api/v1/verbs?categoria=nieregularny&tense=Presente Indicativo&osoba=IO&zwrotne=false"
         const url2 = "https:/italian-verbs.onrender.com/api/v1/verbs/ping"
 
-        const ping = await fetch(url)
+        const ping = await fetch(url2)
         // const ping = await getData("http://127.0.0.1:3000/api/v1/verbs/ping")
         console.log(ping.status)
         if (ping.status === 200) {
             stopInterval()
             showForm()
-            mainFormFunction()
         }
     } catch (e) {
         console.log(e)
@@ -359,8 +358,8 @@ function stopInterval() {
 }
 
 
+mainFormFunction()
 startInterval()
-
 
 
 
