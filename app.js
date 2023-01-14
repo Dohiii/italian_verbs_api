@@ -15,7 +15,11 @@ const checkboxAll = document.querySelector("input[name=checkbox_all]");
 const uncheckAll = document.querySelector("input[name=checkbox_un_all]");
 const checkboxAll_osoba = document.querySelector("input[name=checkbox_all_osoba]");
 const uncheckAll_osoba = document.querySelector("input[name=checkbox_un_all_osoba]");
+
+const loader = document.querySelector(".loader")
+const form = document.querySelector(".form")
 const mainSection = document.querySelector(".main-section");
+
 const btnLetter = document.querySelectorAll(".btn-italian-letter");
 const submit = document.getElementById("submit")
 const new_verb = document.getElementById("new_verb")
@@ -27,6 +31,7 @@ let checkboxValueChecked = []
 let checkboxOsobaValueChecked = []
 let count = [0]
 let correctVerbObject = {}
+let isLoading = true
 
 console.log(correctVerbObject)
 
@@ -54,8 +59,8 @@ const formUrl = async () => {
     if (categorySelected === "all") {
         categorySelected = ["regularny", "nieregularny"][Math.floor(Math.random() * 2)];
     }
-    // const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne}`
-    const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne[0]}`
+    const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne[0]}`
+    // const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne[0]}`
 
     return url
 }
@@ -292,27 +297,24 @@ btnLetter.forEach(btn => {
 
 const getData = async (url) => {
     const response = await fetch(url)
-    // Extract data from response
-    const data = await response.json();
+
+    if (response.ok) {
+        console.log("OK")
+    }
     // Handle errors
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
-
-    return data
+    return response.status
 }
 
 const showLoader = () => {
-    const loader = document.querySelector(".loader")
-    const form = document.querySelector(".form")
     loader.style.display = "block"
     mainSection.style.display = "none"
     form.style.display = "none"
 }
 
 const showForm = () => {
-    const loader = document.querySelector(".loader")
-    const form = document.querySelector(".form")
     mainSection.style.display = "block"
     loader.style.display = "none"
     form.style.display = "block"
@@ -326,28 +328,33 @@ function delay(n) {
 }
 
 const pingServer = async () => {
-    getData("https:/italian-verbs.onrender.com/api/v1/admin")
-    const loader = document.querySelector(".loader")
-    const form = document.querySelector(".form")
-    loader.style.display = "block"
-    form.style.display = "none"
-    await delay(10)
-
-    await getData("https:/italian-verbs.onrender.com/api/v1/admin")
-
-    await delay(10)
-
-    loader.style.display = "none"
-    form.style.display = "block"
+    showLoader()
+    try {
+        // const ping = await getData("https:/italian-verbs.onrender.com/api/v1/verbs/ping")
+        const ping = await getData("http://127.0.0.1:3000/api/v1/verbs/ping")
+        console.log(ping)
+        if (ping === 200) {
+            stopInterval()
+            showForm()
+            mainFormFunction()
+        }
+    } catch (e) {
+        console.log(e)
+    }
 }
-try {
-    pingServer()
 
-} catch (error) {
-    console.log(error)
-} finally {
-    mainFormFunction()
+// Function to start setInterval call
+function startInterval() {
+    intervalID = setInterval(pingServer, 1000);
 }
+
+// Function to stop setInterval call
+function stopInterval() {
+    clearInterval(intervalID);
+}
+
+
+startInterval()
 
 
 
