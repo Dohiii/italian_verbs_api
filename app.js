@@ -332,7 +332,10 @@ function delay(n) {
 const pingServer = async () => {
     showLoader()
     try {
-        const ping = await fetch("https:/italian-verbs.onrender.com/api/v1/verbs/ping")
+        const url = "https://italian-verbs.onrender.com/api/v1/verbs?categoria=nieregularny&tense=Presente Indicativo&osoba=IO&zwrotne=false"
+        const url2 = "https:/italian-verbs.onrender.com/api/v1/verbs/ping"
+
+        const ping = await fetch(url)
         // const ping = await getData("http://127.0.0.1:3000/api/v1/verbs/ping")
         console.log(ping.status)
         if (ping.status === 200) {
