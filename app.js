@@ -295,18 +295,18 @@ btnLetter.forEach(btn => {
 })
 
 
-const getData = async (url_ping) => {
-    const response = await fetch(url_ping)
+// const getData = async (url_ping) => {
+//     const response = await fetch(url_ping)
 
-    if (response.ok) {
-        console.log("OK")
-    }
-    // Handle errors
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.status
-}
+//     if (response.ok) {
+//         console.log("OK")
+//     }
+//     // Handle errors
+//     if (!response.ok) {
+//         throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+//     return response.status
+// }
 
 const showLoader = () => {
     loader.style.display = "block"
@@ -330,10 +330,10 @@ function delay(n) {
 const pingServer = async () => {
     showLoader()
     try {
-        const ping = await getData("https:/italian-verbs.onrender.com/api/v1/verbs/ping")
+        const ping = await fetch("https:/italian-verbs.onrender.com/api/v1/verbs/ping")
         // const ping = await getData("http://127.0.0.1:3000/api/v1/verbs/ping")
-        console.log(ping)
-        if (ping === 200) {
+        console.log(ping.status)
+        if (ping.status === 200) {
             stopInterval()
             showForm()
             mainFormFunction()
