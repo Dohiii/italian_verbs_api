@@ -62,6 +62,8 @@ const formUrl = async () => {
     // const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne[0]}`
     const url = `https://italian-verbs.onrender.com/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne[0]}`
 
+    console.log(url)
+
     return url
 }
 
