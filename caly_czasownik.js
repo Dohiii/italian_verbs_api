@@ -40,6 +40,16 @@ let count = [0]
 let tryes = [0, 0]
 
 
+const checkIfAllOsobyCorrect = async () => {
+  let arrAllinputsOsoba = Array.from(allInputsOsoba)
+  let check = arrAllinputsOsoba.every(item => item.classList.contains('correct'))
+  if (check) {
+    celebrateCorrect()
+  }
+
+
+}
+
 const celebrateCorrect = async () => {
   confettiDiv.style.display = "block"
   hideForm()
@@ -85,9 +95,6 @@ const formUrl = async () => {
 
 
 const checkIfAllGuessed = (arr) => {
-
-
-
   console.log(arr.disabled === true)
   if (tryes.length === 0) {
     return true
@@ -123,10 +130,13 @@ const submitVerb = async () => {
     if (inputtetWord === osoba.name || correctVerbArr.includes(inputtetWord)) {
       console.log(correctVerbArr)
       correctVerb(osoba)
-      if (checkIfAllGuessed(allInputsOsoba)) {
-        celebrateCorrect()
-        clearForm()
-      }
+
+      checkIfAllOsobyCorrect()
+
+      // if (checkIfAllGuessed(allInputsOsoba)) {
+      //   celebrateCorrect()
+      //   clearForm()
+      // }
 
     }
     if (inputtetWord !== osoba.name && osoba.disabled !== true) {
@@ -192,6 +202,7 @@ const populateOsoba = async (data) => {
       input.name = data[input.id]
     } else {
       input.disabled = true
+      input.className = "correct"
       input.style.border = "none"
     }
 
@@ -298,6 +309,7 @@ allInputsOsoba.forEach(osoba => {
       // Trigger the button element with a click
       if (osoba.name === tryWord) {
         correctVerb(osoba)
+        osoba.className = "correct"
       } else {
         incorrectVerb(osoba)
       }
