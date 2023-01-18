@@ -43,11 +43,10 @@ let tryes = [0, 0]
 const checkIfAllOsobyCorrect = async () => {
   let arrAllinputsOsoba = Array.from(allInputsOsoba)
   let check = arrAllinputsOsoba.every(item => item.classList.contains('correct'))
+  console.log(check)
   if (check) {
     celebrateCorrect()
   }
-
-
 }
 
 const celebrateCorrect = async () => {
@@ -129,6 +128,7 @@ const submitVerb = async () => {
 
     if (inputtetWord === osoba.name || correctVerbArr.includes(inputtetWord)) {
       console.log(correctVerbArr)
+      osoba.className = "correct"
       correctVerb(osoba)
 
       checkIfAllOsobyCorrect()
