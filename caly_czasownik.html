@@ -14,8 +14,12 @@
     <title>CiSTA Czasowniki</title>
   </head>
   <body>
-
  
+
+
+    <canvas class="confetti" id="canvas"></canvas>
+
+
       <div class="loader"></div>
       <div class="clock-loader"></div>
 
@@ -25,6 +29,8 @@
           <h4>Podaj wybraną formę czasownika</h4>
         </div>
         
+
+
      
 
         <!-- Rendered Verbs Information -->
@@ -36,15 +42,48 @@
           <p id="tense"></p>
         </div>
 
-        <label for="name" id="tense"></label>
+
+        
+   
+
+        <div class="osoby">
+
+          <div class="inputs-osoba">          <label for="IO" id="tense">IO</label>
+            <input type="search" id="IO" name="" placeholder="Wpisz poprawny czasownik" autocomplete="off" class="" /></div>
+          <div class="inputs-osoba">          <label for="TU" id="tense">TU</label>
+            <input type="search" id="TU" name="" placeholder="Wpisz poprawny czasownik" autocomplete="off" class=""/></div>
+          <div class="inputs-osoba">
+            <label for="LUI" id="tense">LUI/LEI</label>
+            <input type="search" id="LUI" name="" placeholder="Wpisz poprawny czasownik" autocomplete="off" class="" /></div>
+          <div class="inputs-osoba">          <label for="NOI" id="tense">NOI</label>
+            <input type="search" id="NOI" name="" placeholder="Wpisz poprawny czasownik" autocomplete="off" class=""/></div>
+          <div class="inputs-osoba">          <label for="VOI" id="tense">VOI</label>
+            <input type="search" id="VOI" name="" placeholder="Wpisz poprawny czasownik" autocomplete="off" class=""/></div>
+          <div class="inputs-osoba">          <label for="LORO" id="tense">LORO</label>
+            <input type="search" id="LORO" name="" placeholder="Wpisz poprawny czasownik" autocomplete="off" class="" /></div>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+<!-- 
         <div id="correctWord">
           <label for="name" id="osoba"></label>
           <div class="input-icons">
           <i class="fa fa-check-circle fa-2xl icon" aria-hidden="true"></i>
-          <input type="search" id="name" placeholder="Wpisz poprawny czasownik" autocomplete="off" />
-          <input type="search" id="input-green" placeholder="Wpisz poprawny czasownik" autocomplete="off" />
         </div>
-      </div>
+      </div> -->
 
         <div class="italian-letters">
           <button class="btn-italian-letter">à</button>

@@ -2,6 +2,7 @@
 
 
 
+
 //query selectors
 const category = document.getElementById("category")
 const czasownik = document.getElementById("czasownik")
