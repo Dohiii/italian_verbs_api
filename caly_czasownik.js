@@ -43,19 +43,26 @@ let tryes = [0, 0]
 const checkIfAllOsobyCorrect = async () => {
   let arrAllinputsOsoba = Array.from(allInputsOsoba)
   let check = arrAllinputsOsoba.every(item => item.classList.contains('correct'))
-  console.log(check)
   if (check) {
     celebrateCorrect()
   }
 }
 
+const uncheckAllClasses = async () => {
+  allInputsOsoba.forEach(item => item.classList.remove('correct'))
+}
+
 const celebrateCorrect = async () => {
   confettiDiv.style.display = "block"
-  hideForm()
-  await delay(1.5)
+  initConfetti();
+  render();
+  // hideForm()
+  await delay(3)
   confettiDiv.style.display = "none"
+  clearForm()
+  uncheckAllClasses()
   mainFormFunction()
-  showForm()
+  // showForm()
 }
 
 const correctVerb = (el) => {
@@ -130,7 +137,6 @@ const submitVerb = async () => {
       console.log(correctVerbArr)
       osoba.className = "correct"
       correctVerb(osoba)
-
       checkIfAllOsobyCorrect()
 
       // if (checkIfAllGuessed(allInputsOsoba)) {
@@ -506,8 +512,7 @@ render = () => {
 };
 
 //---------Execution--------
-initConfetti();
-render();
+
 
 // //----------Resize----------
 // window.addEventListener('resize', function () {
