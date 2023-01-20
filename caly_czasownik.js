@@ -56,6 +56,7 @@ const uncheckAllClasses = async () => {
 
 const celebrateCorrect = async () => {
   confettiDiv.style.display = "block"
+  mainFormFunction()
   initConfetti();
   render();
   // hideForm()
@@ -63,7 +64,6 @@ const celebrateCorrect = async () => {
   confettiDiv.style.display = "none"
   clearForm()
   uncheckAllClasses()
-  mainFormFunction()
   // showForm()
 }
 
@@ -231,7 +231,7 @@ async function mainFormFunction() {
       console.log(verb)
       renderFunction(verb)
     }).catch(e => { console.log(e) })
-  showForm()
+  // showForm()
 }
 
 
