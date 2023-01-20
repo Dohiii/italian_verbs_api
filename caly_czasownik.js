@@ -48,6 +48,8 @@ const checkIfAllOsobyCorrect = async () => {
   }
 }
 
+//trye again
+
 const uncheckAllClasses = async () => {
   allInputsOsoba.forEach(item => item.classList.remove('correct'))
 }
