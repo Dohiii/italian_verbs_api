@@ -40,8 +40,28 @@ body {
   padding: 1rem;
 }
 
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+}
+
+.links a {
+  text-decoration: none;
+  margin: 0.5rem;
+  color: #000;
+  font-size: large;
+}
+
+.links .not-active {
+  color: rgb(169, 164, 164);
+}
+
 .main-section {
   margin-bottom: 1rem;
+  padding-top: 100px;
 }
 
 #category {
@@ -213,6 +233,7 @@ html {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  margin-bottom: 15px;
 }
 
 .inputs-osoba {
@@ -479,7 +500,7 @@ textarea::placeholder {
 .italian-letters {
   display: flex;
   flex-direction: row;
-  margin-left: 70px;
+  margin-left: 100px;
   /* justify-content: center; */
   margin-bottom: 15px;
 }
