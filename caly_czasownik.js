@@ -95,10 +95,10 @@ const formUrl = async () => {
   if (categorySelected === "all") {
     categorySelected = ["regularny", "nieregularny"][Math.floor(Math.random() * 2)];
   }
-  // const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne[0]}`
-  const url = `https://italian-verbs.onrender.com/api/v1/verbs/full?categoria=${categorySelected}${charString}`
-  const url2 = `https://italian-verbs.onrender.com/api/v1/verbs/full?categoria=${categorySelected}${charString}${getZwrotne[0]}`
-  console.log(url2)
+  // const url = `http://127.0.0.1:3000/api/v1/verbs/full?categoria=${categorySelected}${charString}${getZwrotne[0]}`
+  const url = `https://italian-verbs.onrender.com/api/v1/verbs/full?categoria=${categorySelected}${charString}${getZwrotne[0]}`
+  // const url2 = `https://italian-verbs.onrender.com/api/v1/verbs/full?categoria=${categorySelected}${charString}${getZwrotne[0]}`
+
   return url
 }
 
