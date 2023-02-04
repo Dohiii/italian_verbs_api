@@ -82,7 +82,7 @@ const incorrectVerb = (el) => {
 // function to form url from checked checkboxes
 const formUrl = async () => {
   let charactersSelected = await getValueCheckbox(checkboxes, "tense");
-
+  let getZwrotne = await getValueCheckbox(zwrotne, "zwrotne")
 
   let categorySelected = category.value
   let charString = charactersSelected.join("")
@@ -97,7 +97,8 @@ const formUrl = async () => {
   }
   // const url = `http://127.0.0.1:3000/api/v1/verbs?categoria=${categorySelected}${charString}${osobaString}${getZwrotne[0]}`
   const url = `https://italian-verbs.onrender.com/api/v1/verbs/full?categoria=${categorySelected}${charString}`
-
+  const url2 = `https://italian-verbs.onrender.com/api/v1/verbs/full?categoria=${categorySelected}${charString}${getZwrotne[0]}`
+  console.log(url2)
   return url
 }
 
@@ -263,6 +264,14 @@ category.addEventListener('change', (event) => {
   // result.textContent = `You like ${event.target.value}`;
   mainFormFunction()
 });
+
+zwrotne.forEach(zwrot => {
+  zwrot.addEventListener('change', (event) => {
+    // const result = document.querySelector('.result');
+    // result.textContent = `You like ${event.target.value}`;
+    mainFormFunction()
+  });
+})
 
 
 // checkboxes event listener
